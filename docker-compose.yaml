@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+
+  app:
+    image: my-spring-boot-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8091:8091"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/shop?characterEncoding=utf-8&useSSL=false&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true&useServerPrepStmts=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=yourpassword
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3300:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: wj651213
+      MYSQL_DATABASE: shop
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
