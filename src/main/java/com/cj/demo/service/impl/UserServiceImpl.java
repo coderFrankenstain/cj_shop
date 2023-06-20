@@ -23,6 +23,11 @@ public class UserServiceImpl implements UserServiceInterface {
     }
 
     @Override
+    public UserEntity getUserByUuid(String uuid) {
+        return userMapper.findUserByUuid(uuid);
+    }
+
+    @Override
     public UserEntity loginByName(String name, String password) {
         UserEntity user = userMapper.findUserByUsernameAndPassword(name, password);
         if (user != null) {

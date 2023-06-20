@@ -15,6 +15,7 @@ public interface UserServiceInterface {
      */
     UserEntity getUserById(int id);
 
+    UserEntity getUserByUuid(String uuid);
 
     UserEntity loginByName(String name,String password);
 

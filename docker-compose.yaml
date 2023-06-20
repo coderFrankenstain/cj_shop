@@ -12,7 +12,7 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/shop?characterEncoding=utf-8&useSSL=false&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true&useServerPrepStmts=true
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=yourpassword
+      - SPRING_DATASOURCE_PASSWORD=wj651213 # <-- 更新这里
     depends_on:
       - db
 

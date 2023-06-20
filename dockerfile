@@ -5,8 +5,7 @@ FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 
 # 设置应用程序的JAR文件作为`app.jar`
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
+COPY /out/artifacts/demo_jar/demo.jar app.jar
 
 # 启动应用程序
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
