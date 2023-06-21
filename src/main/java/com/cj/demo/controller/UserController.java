@@ -4,6 +4,7 @@ import com.cj.demo.dao.UserEntity;
 import com.cj.demo.dto.LoginRequest;
 import com.cj.demo.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -23,8 +24,13 @@ public class UserController {
 
 
     @PostMapping(value="login")
-    public UserEntity login(@RequestBody LoginRequest loginRequest) {
-        return userService.loginByName(loginRequest.getUsername(), loginRequest.getPassword());
+    public ResponseEntity<UserEntity> login(@RequestBody LoginRequest loginRequest) {
+        UserEntity result = userService.loginByName(loginRequest.getUsername(), loginRequest.getPassword());
+        if (result == null) {
+            return ResponseEntity.status(500).build();
+        } else {
+            return ResponseEntity.ok(result);
+        }
     }
 
     @PostMapping(value="register")
